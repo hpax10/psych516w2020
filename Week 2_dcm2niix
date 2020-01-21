@@ -1,0 +1,22 @@
+# DCM2NIIX for T1 images
+for i in `cat ~/516/subids.txt`; do
+       mkdir EDSD_dataset/${i}/{anat,func,dwi}
+done
+
+#for i in `cat ~/516/subids.txt`; do
+~/research_bin/dcm2niix/build/bin/dcm2niix \
+        -o ~/516/EDSD_dataset/${i}/anat \
+        -x n \
+        -f ${i}_T1w \
+        -z n \
+       ~/516/EDSD/${i}/DICOM/
+done
+
+# DCM2NIIX for DWI images
+for i in `cat ~/516/subids.txt`; do
+        ~/research_bin/dcm2niix/build/bin/dcm2niix \
+        -o ~/516/EDSD_dataset/${i}/dwi/ \
+        -f ${i}_dwi \
+        -z y \
+        ~/516/EDSD/${i}/DICOM/
+done
