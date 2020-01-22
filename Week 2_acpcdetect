@@ -1,0 +1,11 @@
+# ACPC Align
+## Unfortunately there's no way to direct the output to a new directory
+for i in `cat ~/516/subids.txt`; do 
+	~/research_bin/bin/acpcdetect \
+  	-noppm \
+  	-nopng \
+  	-notxt \
+  -i ~/516/EDSD_dataset/${i}/anat/${i}_T1w.nii
+done
+  
+
