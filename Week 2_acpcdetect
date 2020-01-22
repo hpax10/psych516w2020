@@ -13,8 +13,8 @@ for i in `cat ~/516/subids.txt`; do
 done
 
 for i in `cat ~/516/subids.txt`; do
-        mv -v ~/516/data/BIDS/EDSD_dataset/${i}/anat/*RAS.nii ~/516/data/deriva$
-        mv -v ~/516/data/BIDS/EDSD_dataset/${i}/anat/*FSL.mat ~/516/data/deriva$
-        mv -v ~/516/data/BIDS/EDSD_dataset/${i}/anat/*.mrx ~/516/data/derivativ$
+        mv -v ~/516/data/BIDS/EDSD_dataset/${i}/anat/*RAS.nii ~/516/data/derivative/${i}
+        mv -v ~/516/data/BIDS/EDSD_dataset/${i}/anat/*FSL.mat ~/516/data/derivative/${i}
+        mv -v ~/516/data/BIDS/EDSD_dataset/${i}/anat/*.mrx ~/516/data/derivative/${i}
 done
 
