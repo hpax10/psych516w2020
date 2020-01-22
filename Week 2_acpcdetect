@@ -1,11 +1,20 @@
 # ACPC Align
 ## Unfortunately there's no way to direct the output to a new directory
-for i in `cat ~/516/subids.txt`; do 
-	~/research_bin/bin/acpcdetect \
-  	-noppm \
-  	-nopng \
-  	-notxt \
-  -i ~/516/EDSD_dataset/${i}/anat/${i}_T1w.nii
+#for i in `cat ~/516/subids.txt`; do
+#	~acpcdetect \
+ #	-noppm \
+  #     -nopng \
+  #     -notxt \
+ # -i ~/516/EDSD_dataset/${i}/anat/${i}_T1w.nii
+#done
+
+for i in `cat ~/516/subids.txt`; do
+        mkdir ~/516/data/derivative/${i}
 done
-  
+
+for i in `cat ~/516/subids.txt`; do
+        mv -v ~/516/data/BIDS/EDSD_dataset/${i}/anat/*RAS.nii ~/516/data/deriva$
+        mv -v ~/516/data/BIDS/EDSD_dataset/${i}/anat/*FSL.mat ~/516/data/deriva$
+        mv -v ~/516/data/BIDS/EDSD_dataset/${i}/anat/*.mrx ~/516/data/derivativ$
+done
 
