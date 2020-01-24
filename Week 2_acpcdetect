@@ -18,3 +18,13 @@ for i in `cat ~/516/subids.txt`; do
         mv -v ~/516/data/BIDS/EDSD_dataset/${i}/anat/*.mrx ~/516/data/derivative/${i}
 done
 
+for i in `cat ~/516/subids.txt`; do
+freeview -v \
+~/516/data/derivative/${i}/${i}_T1w_RAS.nii:grayscale=0,800 \
+--viewport sagittal \
+--layout 1 \
+--viewsize 800 800 \
+--zoom 1 \
+--screenshot ~/516/acpcdetect_screenshots/${i}.png
+done
+
