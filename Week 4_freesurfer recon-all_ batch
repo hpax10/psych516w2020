@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for i in `cat <subjid_file>.txt`; do
+   sbatch \
+   -o ~/logfiles/${1}/output_${subj}.txt \
+   -e ~/logfiles/${1}/error_${subj}.txt \
+   ~/516/scripts/freesurfer_job.sh \
+   ${i}
+   sleep 1
+done
