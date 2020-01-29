@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --time=30:00:00   # walltime
+#SBATCH --ntasks=1   # number of processor cores (i.e. tasks)
+#SBATCH --nodes=1   # number of nodes
+#SBATCH --mem-per-cpu=16384M  # memory per CPU core
+
+
+# LOAD ENVIRONMENTAL VARIABLES
+#id=`id -un`
+#export FREESURFER_HOME=/fslhome/${id}/apps/freesurfer
+#source $FREESURFER_HOME/SetUpFreeSurfer.sh
+freesurfer
+
+# INSERT CODE, AND RUN YOUR PROGRAMS HERE
+
+recon-all \
+-subjid ${1} \
+-i ~/516/data/derivative/${1}/${1}_T1w.nii.gz \
+-wsatlas \
+-all \
+-sd ~/516/data/FS_subjects/${1}/
