@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in `cat <subjid_file>.txt`; do
+for i in `cat ~/516/subids.txt`; do
    sbatch \
    -o ~/logfiles/${1}/output_${subj}.txt \
    -e ~/logfiles/${1}/error_${subj}.txt \
