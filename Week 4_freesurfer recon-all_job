@@ -7,9 +7,6 @@
 
 
 # LOAD ENVIRONMENTAL VARIABLES
-#id=`id -un`
-#export FREESURFER_HOME=/fslhome/${id}/apps/freesurfer
-#source $FREESURFER_HOME/SetUpFreeSurfer.sh
 freesurfer
 
 # INSERT CODE, AND RUN YOUR PROGRAMS HERE
