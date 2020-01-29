@@ -8,19 +8,13 @@
 # LOAD ENVIRONMENTAL VARIABLES
 
 # INSERT CODE, AND RUN YOUR PROGRAMS HERE
-#for i in `cat ~/516/subids.txt`; do
-#cd ~/516/data/derivative/${i}/
-#done 
+cd ~/516/data/derivative/${i}/
 
 # CROP
-#c3d \
-#${i}_T2w_RAS.nii \
-#-trim 20vox \
-#-o cropped.nii.gz; 
-#done 
-
-for i in `cat ~/516/subids.txt`; do
-cd ~/516/data/derivative/${i}/ \
+c3d \
+${i}_T2w_RAS.nii \
+-trim 20vox \
+-o cropped.nii.gz; 
 
 # N4 BIAS FIELD CORRECTION
 N4BiasFieldCorrection \
@@ -28,20 +22,13 @@ N4BiasFieldCorrection \
 -i  cropped.nii.gz \
 -o n4.nii.gz \
 -s 4 -b [200] -c [50x50x50x50,0.000001]
-done
 
-for i in `cat ~/516/subids.txt`; do
-cd ~/516/data/derivative/${i}
 # RESAMPLE
 c3d \
 n4.nii.gz \
 -resample-mm 1x1x1mm \
 -o ${i}_T1w.nii.gz
-done
 
-for i in `cat ~/516/subids.txt`; do
-cd ~/516/data/derivative/${i}
 # CLEAN UP DIRECTORY
 rm cropped.nii.gz
 rm n4.nii.gz;
-done
