@@ -9,7 +9,7 @@
 
 # INSERT CODE, AND RUN YOUR PROGRAMS HERE
 for i in `cat ~/516/subids.txt`; do
-cd ~/516/data/derivative/${1}/
+cd ~/516/data/derivative/${i}/
 
 # CROP
 c3d \
