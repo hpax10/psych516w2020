@@ -10,12 +10,12 @@
 freesurfer-dev
 
 # INSERT CODE, AND RUN YOUR PROGRAMS HERE
-cd ~/516/data/derivative/${1}/
+cd ~/516/data/derivative/${i}/
 
 recon-all \
--subjid ${1} \
--i ${1}_T1w.nii.gz \
+-subjid ${i} \
+-i ${i}_T1w.nii.gz \
 -wsatlas \
 -all \
 -bigventricles \
--sd ~/516/data/FS_subjects_bv/${1}/
+-sd ~/516/data/FS_subjects_bv/${i}/
