@@ -1,11 +1,11 @@
 #!/bin/bash
 
 curTime=`date +"%Y%m%d-%H%M%S"`
-for SUBJID in `cat ~/516/subids.txt`; do
+for 1 in `cat ~/516/subids.txt`; do
    sbatch \
-   -o ~/logfiles/${curTime}-t1/o-${SUBJID}.txt \
-   -e ~/logfiles/${curTime}-t1/e-${SUBJID}.txt \
+   -o ~/logfiles/${curTime}-FS/o-${1}.txt \
+   -e ~/logfiles/${curTime}-FS/e-${1}.txt \
    ~/516/scripts/freesurfer_job.sh \
-   ${SUBJID}
+   ${1}
    sleep 1
 done
