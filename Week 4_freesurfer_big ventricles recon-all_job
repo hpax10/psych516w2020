@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#SBATCH --time=30:00:00   # walltime
+#SBATCH --ntasks=1   # number of processor cores (i.e. tasks)
+#SBATCH --nodes=1   # number of nodes
+#SBATCH --mem-per-cpu=16384M  # memory per CPU core
+
+
+# LOAD ENVIRONMENTAL VARIABLES
+freesurfer-dev
+
+# INSERT CODE, AND RUN YOUR PROGRAMS HERE
+cd ~/516/data/derivative/${1}/
+
+recon-all \
+-subjid ${1} \
+-i ${1}_T1w.nii.gz \
+-wsatlas \
+-all \
+-bigventricles \
+-sd ~/516/data/FS_subjects_bv/${1}/
