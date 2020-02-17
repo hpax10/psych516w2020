@@ -13,8 +13,8 @@ freesurfer
 cd ~/516/data/derivative/${1}/
 
 recon-all \
--subjid ${i} \
--i ${i}_T1w.nii.gz \
+-subjid ${1} \
+-i ${1}_T1w.nii.gz \
 -wsatlas \
 -all \
 -bigventricles \
