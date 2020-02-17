@@ -2,7 +2,7 @@
 #!/bin/bash
 
 curTime=`date +"%Y%m%d-%H%M%S"`
-mkdir -p ~/logfiles/EDSD/${curTime}-FSbv
+mkdir ~/logfiles/EDSD/${curTime}-FSbv
 for i in `cat ~/516/subids.txt`; do
    sbatch \
    -o ~/logfiles/EDSD/${curTime}-FSbv/o-${i}.txt \
