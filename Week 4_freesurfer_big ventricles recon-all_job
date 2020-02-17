@@ -10,7 +10,7 @@
 freesurfer-dev
 
 # INSERT CODE, AND RUN YOUR PROGRAMS HERE
-cd ~/516/data/derivative/${i}/
+cd ~/516/data/derivative/${1}/
 
 recon-all \
 -subjid ${i} \
@@ -18,4 +18,4 @@ recon-all \
 -wsatlas \
 -all \
 -bigventricles \
--sd ~/516/data/FS_subjects_bv/${i}/
+-sd ~/516/data/FS_subjects_bv/
