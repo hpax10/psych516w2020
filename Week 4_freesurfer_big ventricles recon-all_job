@@ -7,7 +7,7 @@
 
 
 # LOAD ENVIRONMENTAL VARIABLES
-freesurfer-dev
+freesurfer
 
 # INSERT CODE, AND RUN YOUR PROGRAMS HERE
 cd ~/516/data/derivative/${1}/
