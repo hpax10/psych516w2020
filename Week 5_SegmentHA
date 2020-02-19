@@ -1,0 +1,9 @@
+freesurfer-dev
+
+FS_SUBJECTS_DIR=~/516/data/FS_subjects_bv
+
+for i in `cat ~/516/subids.txt`; do
+segmentHA_T1.sh \
+${i} \
+${FS_SUBJECTS_DIR}/
+done
