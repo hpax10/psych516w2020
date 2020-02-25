@@ -1,0 +1,18 @@
+#!/bin/bash 
+
+#SBATCH --time=30:00:00 # walltime
+#SBATCH --ntasks=1 # number of processor cores (i.e. tasks)
+#SBATCH --nodes=1 # number of nodes
+#SBATCH --mem-per-cpu=16384M # memory per CPU core
+
+freesurfer-dev
+
+FS_SUBJECTS_DIR=~/516/data/FS_subjects_bv
+
+cd ~/516/data/FS_subjects_bv
+
+segmentHA_T1.sh \
+${1} \
+${FS_SUBJECTS_DIR}/
+
+
