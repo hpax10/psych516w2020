@@ -1,0 +1,12 @@
+#!/bin/bash
+
+curTime=`date +"%Y%m%d-%H%M%S"`
+mkdir ~/logfiles/EDSD/${curTime}-FS_segmentHA
+for subid in `cat ~/516/subids.txt`; do 
+  sbatch \
+  -o ~/logfiles/EDSD/${curTime}-FS_segmentHA/o-${subid}.txt \
+  -e ~/logfiles/EDSD/${curTime}-FS_segmentHA/e-${subid}.txt \
+  ~/516/scripts/segmentHA_job.sh \
+  ${subid}
+  sleep 1
+done
