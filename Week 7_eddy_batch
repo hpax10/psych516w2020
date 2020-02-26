@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+curTime=`date +"%Y%m%d-%H%M%S"`
+mkdir ~/logfiles/EDSD/${curTime}-eddy
+for subid in `cat ~/516/subids.txt`; do 
+  sbatch \
+  -o ~/logfiles/EDSD/${curTime}-eddy/o-${subid}.txt \
+  -e ~/logfiles/EDSD/${curTime}-eddy/e-${subid}.txt \
+  ~/516/scripts/eddy_job.sh \
+  ${subid}
+  sleep 1
+done
