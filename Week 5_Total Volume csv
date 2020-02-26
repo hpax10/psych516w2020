@@ -1,0 +1,10 @@
+
+
+for i in `cat ~/516/subids.txt`; do
+cd ~/516/data/BIDS/EDSD_dataset/
+NIFTI=`c4d ${i}/dwi/${i}_dwi.nii.gz -info-full | grep -Ewo "dim\[4\] = [0-9]{1,$
+bval=`cat ${i}/dwi/${i}_dwi.bval | wc -w`
+bvec=`head -n 1	${i}/dwi/${i}_dwi.bvec | wc -w`
+echo $NIFTI, $bval, $bvec >> ~/516/data/BIDS/EDSD_dataset/totalvol.csv
+done
+
