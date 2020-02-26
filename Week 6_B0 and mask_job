@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#SBATCH --time=30:00:00 # walltime
+#SBATCH --ntasks=1 # number of processor cores (i.e. tasks)
+#SBATCH --nodes=1 # number of nodes
+#SBATCH --mem-per-cpu=16384M # memory per CPU core
+
+mkdir -p ~/516/data/derivative/pDWI/${1}
+
+BIDS_DIR=~/516/data/BIDS/EDSD_dataset
+DERIV_DIR=~/516/data/derivative/pDWI
+
+cd ${DERIV_DIR}/${1}/
+ln -s ${BIDS_DIR}/${1}/dwi/${1}_dwi.nii.gz dwi.nii.gz
+ln -s ${BIDS_DIR}/${1}/dwi/${1}_dwi.bval dwi.bval
+ln -s ${BIDS_DIR}/${1}/dwi/${1}_dwi.bvec dwi.bvec
+
+fslroi dwi.nii.gz dwi_b0.nii.gz 0 1
+
+bet dwi_b0.nii.gz dwi_b0_ -f 0.1 -g 0 -m -n
