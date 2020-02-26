@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+
+curTime=`date +"%Y%m%d-%H%M%S"`
+mkdir ~/logfiles/EDSD/${curTime}-b0andmask
+for subid in `cat ~/516/subids.txt`; do
+  sbatch \
+  -o ~/logfiles/EDSD/${curTime}-b0andmaskA/o-${subid}.txt \
+  -e ~/logfiles/EDSD/${curTime}-b0andmask/e-${subid}.txt \
+  ~/516/scripts/week6_b0andmask_job.sh \
+  ${subid}
+  sleep 1
+done
