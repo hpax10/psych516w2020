@@ -11,7 +11,7 @@ printf "0 -1 0 0.072" > acqparams.txt
 
 myVar=($(wc -w dwi.bval))
 indx=""
-for ((i=1); i<=$myVar; i+=1)); do indx="$indx 1"; done
+for ((i=1; i<=$myVar; i+=1)); do indx="$indx 1"; done
 echo $indx > index.txt
 
 eddy_openmp \
