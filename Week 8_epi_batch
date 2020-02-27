@@ -1,0 +1,12 @@
+#!/bin/bash
+
+curTime=`date +"%Y%m%d-%H%M%S"`
+mkdir ~/logfiles/EDSD/${curTime}-epi
+for subid in `cat ~/516/subids.txt`; do 
+  sbatch \
+  -o ~/logfiles/EDSD/${curTime}-epi/o-${subid}.txt \
+  -e ~/logfiles/EDSD/${curTime}-epi/e-${subid}.txt \
+  ~/516/scripts/week8_epi_job.sh \
+  ${subid}
+  sleep 1
+done
