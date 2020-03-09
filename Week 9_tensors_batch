@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+
+curTime=`date +"%Y%m%d-%H%M%S"`
+mkdir ~/logfiles/EDSD/${curTime}-tensors
+for subid in `cat ~/516/subids.txt`; do
+  sbatch \
+  -o ~/logfiles/EDSD/${curTime}-tensors/o-${subid}.txt \
+  -e ~/logfiles/EDSD/${curTime}-tensors/e-${subid}.txt \
+  ~/516/scripts/week9_tensors_job.sh \
+  ${subid}
+  sleep 1
+done
+
