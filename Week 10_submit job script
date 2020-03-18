@@ -1,0 +1,6 @@
+var=`date +"%Y%m%d-%H%M%S"`
+mkdir -p ~/logfiles/EDSD/${var}-tbss1
+sbatch \
+-o ~/logfiles/${var}-tbss1/output.txt \
+-e ~/logfiles/${var}-tbss1/error.txt \
+~/516/scripts/tbss_1_preproc.sh
