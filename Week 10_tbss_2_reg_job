@@ -11,4 +11,4 @@ export FSLDIR PATH
 . ${FSLDIR}/etc/fslconf/fsl.sh
 
 cd ~/516/data/derivative/tbss
-week10_tbss_2_reg -t ~/Templates/ENIGMA/ENIGMA_DTI_FA.nii.gz
+tbss_2_reg -t ~/Templates/ENIGMA/ENIGMA_DTI_FA.nii.gz
