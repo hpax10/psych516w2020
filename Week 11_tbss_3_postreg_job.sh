@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 #SBATCH --time=00:30:00 # walltime
 #SBATCH --ntasks=1 # number of processor cores (i.e. tasks)
