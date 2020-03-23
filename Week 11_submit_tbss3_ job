@@ -1,0 +1,6 @@
+var=`date +"%Y%m%d-%H%M%S"`
+mkdir -p ~/logfiles/EDSD/${var}-tbss3
+sbatch \
+-o ~/logfiles/EDSD$/{var}-tbss3/output.txt \
+-e ~/logfiles/EDSD$/{var}-tbss3/error.txt \
+~/516/scripts/week11_tbss_3_postreg.sh
