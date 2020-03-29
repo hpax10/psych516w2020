@@ -1,0 +1,71 @@
+To be submitted individually:
+
+#new directory for each metric
+DIR=~/516/data/derivative
+mkdir ${DIR}/tbss/MD/
+mkdir ${DIR}/tbss/AD/
+mkdir ${DIR}/tbss/RD/
+
+#copy
+for i in `cat ~/516/subids.txt`; do 
+cp -v ${DIR}/pDWI/{i}/dti_MD.nii.gz ${DIR}/tbss/MD/${i}_MD.nii.gz
+cp -v ${DIR}/pDWI/${i}/dti_L1.nii.gz ${DIR}/tbss/AD/${i}_AD.nii.gz
+done
+
+#create RD image
+DIR=~/516/data/derivative
+for i in `cat ~/516/subids.txt`; do 
+fslmaths ${DIR}/pDWI/${i}/dti_L2.nii.gz \
+-add ${DIR}/pDWI/${i}/dti_L3.nii.gz \
+-div 2 \
+${DIR}/tbss/RD/${i}_RD.nii.gz
+done
+
+#check base code - MD
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do 
+echo ${i}
+done
+
+#check base code - RD
+TBSS=~/516/data/derivative/tbss
+DTI=RD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do 
+echo ${i}
+done
+
+#check base code - AD
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do 
+echo ${i}
+done
+
+#make directories 
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+mkdir -p ${TBSS}/${DTI}/origdata/
+mkdir -p ${TBSS}/${DTI}-individ/${i}/${DTI}/
+mkdir -p ${TBSS}/${DTI}-individ/${i}/stats/
+done
+
+#make directories 
+TBSS=~/516/data/derivative/tbss
+DTI=RD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+mkdir -p ${TBSS}/${DTI}/origdata/
+mkdir -p ${TBSS}/${DTI}-individ/${i}/${DTI}/
+mkdir -p ${TBSS}/${DTI}-individ/${i}/stats/
+done
+
+#make directories 
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+mkdir -p ${TBSS}/${DTI}/origdata/
+mkdir -p ${TBSS}/${DTI}-individ/${i}/${DTI}/
+mkdir -p ${TBSS}/${DTI}-individ/${i}/stats/
+done
+
