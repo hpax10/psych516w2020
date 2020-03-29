@@ -138,3 +138,67 @@ done
 TBSS=~/516/data/derivative/tbss
 BIDS=~/516/data/BIDS/EDSD_dataset
 tr '\t' ',' < ${BIDS}/participants.tsv > ${TBSS}/table.csv
+
+#Part 5 - combining ROI files 1
+TBSS=~/516/data/derivative/tbss
+DTI=FA
+table=${TBSS}/table.csv
+subjectIDcol=participant_id
+subjectList=${TBSS}/subjectList-${DTI}.csv
+outTable=${TBSS}/ROI/${DTI}.csv
+Ncov=0
+covariates=""
+Nroi="all"
+rois="all"
+
+#r for 1
+module load r
+R --no-save --slave --args ${table} ${subjectIDcol} ${subjectList} ${outTable} ${Ncov} ${covariates} ${Nroi} ${rois} <  ~/apps/ROIextraction_info/combine_subject_tables.R  
+
+#Part 5 - combining ROI files 2
+TBSS=~/516/data/derivative/tbss
+DTI=RD
+table=${TBSS}/table.csv
+subjectIDcol=participant_id
+subjectList=${TBSS}/subjectList-${DTI}.csv
+outTable=${TBSS}/ROI/${DTI}.csv
+Ncov=0
+covariates=""
+Nroi="all"
+rois="all"
+
+#r for 2
+module load r
+R --no-save --slave --args ${table} ${subjectIDcol} ${subjectList} ${outTable} ${Ncov} ${covariates} ${Nroi} ${rois} <  ~/apps/ROIextraction_info/combine_subject_tables.R  
+
+#Part 5 - combining ROI files 3
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+table=${TBSS}/table.csv
+subjectIDcol=participant_id
+subjectList=${TBSS}/subjectList-${DTI}.csv
+outTable=${TBSS}/ROI/${DTI}.csv
+Ncov=0
+covariates=""
+Nroi="all"
+rois="all"
+
+#r for 3
+module load r
+R --no-save --slave --args ${table} ${subjectIDcol} ${subjectList} ${outTable} ${Ncov} ${covariates} ${Nroi} ${rois} <  ~/apps/ROIextraction_info/combine_subject_tables.R  
+
+#Part 5 - combining ROI files 4
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+table=${TBSS}/table.csv
+subjectIDcol=participant_id
+subjectList=${TBSS}/subjectList-${DTI}.csv
+outTable=${TBSS}/ROI/${DTI}.csv
+Ncov=0
+covariates=""
+Nroi="all"
+rois="all"
+
+#r for 4
+module load r
+R --no-save --slave --args ${table} ${subjectIDcol} ${subjectList} ${outTable} ${Ncov} ${covariates} ${Nroi} ${rois} <  ~/apps/ROIextraction_info/combine_subject_tables.R  
