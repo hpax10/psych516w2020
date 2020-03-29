@@ -199,9 +199,41 @@ tbss_skeleton \
   -p 0.049 \
   ${TMP}/ENIGMA_DTI_FA_skeleton_mask_dst.nii.gz \
   ${FSLDIR}/data/standard/LowerCingulum_1mm.nii.gz \
-  ${TBSS}/FA-individ/${SBJ}/FA/${SBJ}_masked_FA.nii.gz  \
-  ${TBSS}/${DTI}-individ/${SBJ}/stats/${SBJ}_masked_${DTI}skel \
-  -a ${TBSS}/${DTI}-individ/${SBJ}/${DTI}/${SBJ}_masked_${DTI}.nii.gz \
+  ${TBSS}/FA-individ/${i}/FA/${i}_masked_FA.nii.gz  \
+  ${TBSS}/${DTI}-individ/${i}/stats/${i}_masked_${DTI}skel \
+  -a ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_masked_${DTI}.nii.gz \
+  -s ${TMP}/ENIGMA_DTI_FA_skeleton_mask.nii.gz
+done
+
+#Skeletonize 2
+TBSS=~/516/data/derivative/tbss
+DTI=RD
+TMP=~/Templates/ENIGMA
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+tbss_skeleton \
+  -i ${TMP}/ENIGMA_DTI_FA.nii.gz \
+  -p 0.049 \
+  ${TMP}/ENIGMA_DTI_FA_skeleton_mask_dst.nii.gz \
+  ${FSLDIR}/data/standard/LowerCingulum_1mm.nii.gz \
+  ${TBSS}/FA-individ/${i}/FA/${i}_masked_FA.nii.gz  \
+  ${TBSS}/${DTI}-individ/${i}/stats/${i}_masked_${DTI}skel \
+  -a ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_masked_${DTI}.nii.gz \
+  -s ${TMP}/ENIGMA_DTI_FA_skeleton_mask.nii.gz
+done
+
+#Skeletonize 3
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+TMP=~/Templates/ENIGMA
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+tbss_skeleton \
+  -i ${TMP}/ENIGMA_DTI_FA.nii.gz \
+  -p 0.049 \
+  ${TMP}/ENIGMA_DTI_FA_skeleton_mask_dst.nii.gz \
+  ${FSLDIR}/data/standard/LowerCingulum_1mm.nii.gz \
+  ${TBSS}/FA-individ/${i}/FA/${i}_masked_FA.nii.gz  \
+  ${TBSS}/${DTI}-individ/${i}/stats/${i}_masked_${DTI}skel \
+  -a ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_masked_${DTI}.nii.gz \
   -s ${TMP}/ENIGMA_DTI_FA_skeleton_mask.nii.gz
 done
 
