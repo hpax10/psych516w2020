@@ -1,0 +1,140 @@
+Step 2: Submitted individually 
+
+#download ROIs from ENIGMA
+cd ~/research_bin/ENIGMA
+wget http://enigma.ini.usc.edu/wp-content/uploads/2012/06/ROIextraction_info.zip
+unzip ROIextraction_info.zip 
+rm ROIextraction_info.zip
+
+#Part 1 - creating individual ROI files 1 
+TBSS=~/516/data/derivative/tbss
+DTI=FA 
+APPS=~/research_bin/ENIGMA
+mkdir -p ${TBSS}/ROI/part1/${DTI}
+for SUJ in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  ~/${APPS}/ROIextraction_info/singleSubjROI_exe \
+  ~/${APPS}/ROIextraction_info/ENIGMA_look_up_table.txt \
+  ~/${APPS}/ROIextraction_info/mean_FA_skeleton.nii.gz \
+  ~/${APPS}/ROIextraction_info/JHU-WhiteMatter-labels-1mm.nii.gz \
+  ${TBSS}/ROI/part1/${DTI}/${i}_ROIout \
+  ${TBSS}/${DTI}-individ/${i}/stats/${i}_masked_${DTI}skel.nii.gz
+done
+
+#Part 1 - creating individual ROI files 2
+TBSS=~/516/data/derivative/tbss
+DTI=RD
+APPS=~/research_bin/ENIGMA
+mkdir -p ${TBSS}/ROI/part1/${DTI}
+for SUJ in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  ~/${APPS}/ROIextraction_info/singleSubjROI_exe \
+  ~/${APPS}/ROIextraction_info/ENIGMA_look_up_table.txt \
+  ~/${APPS}/ROIextraction_info/mean_FA_skeleton.nii.gz \
+  ~/${APPS}/ROIextraction_info/JHU-WhiteMatter-labels-1mm.nii.gz \
+  ${TBSS}/ROI/part1/${DTI}/${i}_ROIout \
+  ${TBSS}/${DTI}-individ/${i}/stats/${i}_masked_${DTI}skel.nii.gz
+done
+
+#Part 1 - creating individual ROI files 3
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+APPS=~/research_bin/ENIGMA
+mkdir -p ${TBSS}/ROI/part1/${DTI}
+for SUJ in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  ~/${APPS}/ROIextraction_info/singleSubjROI_exe \
+  ~/${APPS}/ROIextraction_info/ENIGMA_look_up_table.txt \
+  ~/${APPS}/ROIextraction_info/mean_FA_skeleton.nii.gz \
+  ~/${APPS}/ROIextraction_info/JHU-WhiteMatter-labels-1mm.nii.gz \
+  ${TBSS}/ROI/part1/${DTI}/${i}_ROIout \
+  ${TBSS}/${DTI}-individ/${i}/stats/${i}_masked_${DTI}skel.nii.gz
+done
+
+#Part 1 - creating individual ROI files 4
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+APPS=~/research_bin/ENIGMA
+mkdir -p ${TBSS}/ROI/part1/${DTI}
+for SUJ in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  ~/${APPS}/ROIextraction_info/singleSubjROI_exe \
+  ~/${APPS}/ROIextraction_info/ENIGMA_look_up_table.txt \
+  ~/${APPS}/ROIextraction_info/mean_FA_skeleton.nii.gz \
+  ~/${APPS}/ROIextraction_info/JHU-WhiteMatter-labels-1mm.nii.gz \
+  ${TBSS}/ROI/part1/${DTI}/${i}_ROIout \
+  ${TBSS}/${DTI}-individ/${i}/stats/${i}_masked_${DTI}skel.nii.gz
+done
+
+#Part 2 - Averaging/Removing 1
+TBSS=~/516/data/derivative/tbss
+DTI=FA
+mkdir -p ${TBSS}/ROI/part2/${DTI}
+for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  ~/${APPS}/ROIextraction_info/averageSubjectTracts_exe \
+  ${TBSS}/ROI/part1/${DTI}/${i}_ROIout.csv \
+  ${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv
+done
+
+#Part 2 - Averaging/Removing 2
+TBSS=~/516/data/derivative/tbss
+DTI=RD
+mkdir -p ${TBSS}/ROI/part2/${DTI}
+for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  ~/${APPS}/ROIextraction_info/averageSubjectTracts_exe \
+  ${TBSS}/ROI/part1/${DTI}/${i}_ROIout.csv \
+  ${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv
+done
+
+#Part 2 - Averaging/Removing 3
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+mkdir -p ${TBSS}/ROI/part2/${DTI}
+for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  ~/${APPS}/ROIextraction_info/averageSubjectTracts_exe \
+  ${TBSS}/ROI/part1/${DTI}/${i}_ROIout.csv \
+  ${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv
+done
+
+#Part 2 - Averaging/Removing 4
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+mkdir -p ${TBSS}/ROI/part2/${DTI}
+for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  ~/${APPS}/ROIextraction_info/averageSubjectTracts_exe \
+  ${TBSS}/ROI/part1/${DTI}/${i}_ROIout.csv \
+  ${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv
+done
+
+#Part 3 - subject list file 1
+TBSS=~/516/data/derivative/tbss
+DTI=FA
+cd ${TBSS}
+for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  echo ${i},${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv >> subjectList-${DTI}.csv
+done
+
+#Part 3 - subject list file 2
+TBSS=~/516/data/derivative/tbss
+DTI=RD
+cd ${TBSS}
+for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  echo ${i},${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv >> subjectList-${DTI}.csv
+done
+
+#Part 3 - subject list file 3
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+cd ${TBSS}
+for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  echo ${i},${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv >> subjectList-${DTI}.csv
+done
+
+#Part 3 - subject list file 4
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+cd ${TBSS}
+for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+  echo ${i},${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv >> subjectList-${DTI}.csv
+done
+
+#Part 4 - Use BIDS participants file
+TBSS=~/516/data/derivative/tbss
+BIDS=~/516/data/BIDS/EDSD_dataset
+tr '\t' ',' < ${BIDS}/participants.tsv > ${TBSS}/table.csv
