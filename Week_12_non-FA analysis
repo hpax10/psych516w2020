@@ -42,7 +42,7 @@ for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
 echo ${i}
 done
 
-#make directories 
+#make directories - 1
 TBSS=~/516/data/derivative/tbss
 DTI=MD
 for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
@@ -51,7 +51,7 @@ mkdir -p ${TBSS}/${DTI}-individ/${i}/${DTI}/
 mkdir -p ${TBSS}/${DTI}-individ/${i}/stats/
 done
 
-#make directories 
+#make directories 2
 TBSS=~/516/data/derivative/tbss
 DTI=RD
 for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
@@ -60,12 +60,148 @@ mkdir -p ${TBSS}/${DTI}-individ/${i}/${DTI}/
 mkdir -p ${TBSS}/${DTI}-individ/${i}/stats/
 done
 
-#make directories 
+#make directories 3
 TBSS=~/516/data/derivative/tbss
 DTI=AD
 for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
 mkdir -p ${TBSS}/${DTI}/origdata/
 mkdir -p ${TBSS}/${DTI}-individ/${i}/${DTI}/
 mkdir -p ${TBSS}/${DTI}-individ/${i}/stats/
+done
+
+#clean brain extraction 1
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+fslmaths ${TBSS}/${DTI}/${i}_${DTI}.nii.gz \
+-mas ${TBSS}/FA/${i}_FA_FA_mask.nii.gz \
+${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI}
+done
+
+#clean brain extraction 2
+TBSS=~/516/data/derivative/tbss
+DTI=RD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+fslmaths ${TBSS}/${DTI}/${i}_${DTI}.nii.gz \
+-mas ${TBSS}/FA/${i}_FA_FA_mask.nii.gz \
+${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI}
+done
+
+#clean brain extraction 3
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+fslmaths ${TBSS}/${DTI}/${i}_${DTI}.nii.gz \
+-mas ${TBSS}/FA/${i}_FA_FA_mask.nii.gz \
+${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI}
+done
+
+#Move images 1
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+immv \
+${TBSS}/${DTI}/${i} \
+${TBSS}/${DTI}/origdata/
+done
+
+#Move images 2
+TBSS=~/516/data/derivative/tbss
+DTI=Rd
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+immv \
+${TBSS}/${DTI}/${i} \
+${TBSS}/${DTI}/origdata/
+done
+
+#Move images 3
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+immv \
+${TBSS}/${DTI}/${i} \
+${TBSS}/${DTI}/origdata/
+done
+
+#Normalization Warp 1
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+applywarp \
+-i ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI} \
+  -o ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI}_to_target \
+  -r ${FSLDIR}/data/standard/FMRIB58_FA_1mm \
+  -w ${TBSS}/FA/${i}_FA_FA_to_target_warp.nii.gz
+done
+
+#Normalization Warp 2
+TBSS=~/516/data/derivative/tbss
+DTI=RD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+applywarp \
+-i ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI} \
+  -o ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI}_to_target \
+  -r ${FSLDIR}/data/standard/FMRIB58_FA_1mm \
+  -w ${TBSS}/FA/${i}_FA_FA_to_target_warp.nii.gz
+done
+
+#Normalization Warp 3
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+applywarp \
+-i ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI} \
+  -o ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI}_to_target \
+  -r ${FSLDIR}/data/standard/FMRIB58_FA_1mm \
+  -w ${TBSS}/FA/${i}_FA_FA_to_target_warp.nii.gz
+done
+
+#Template Mask 1
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+TMP=~/Templates/ENIGMA
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+fslmaths \
+${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI}_to_target \
+  -mas ${TMP}/ENIGMA_DTI_FA_mask.nii.gz \
+  ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_masked_${DTI}.nii.gz
+done
+
+#Template Mask 2
+TBSS=~/516/data/derivative/tbss
+DTI=RD
+TMP=~/Templates/ENIGMA
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+fslmaths \
+${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI}_to_target \
+  -mas ${TMP}/ENIGMA_DTI_FA_mask.nii.gz \
+  ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_masked_${DTI}.nii.gz
+done
+
+#Template Mask 3
+TBSS=~/516/data/derivative/tbss
+DTI=AD
+TMP=~/Templates/ENIGMA
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+fslmaths \
+${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_${DTI}_to_target \
+  -mas ${TMP}/ENIGMA_DTI_FA_mask.nii.gz \
+  ${TBSS}/${DTI}-individ/${i}/${DTI}/${i}_masked_${DTI}.nii.gz
+done
+
+#Skeletonize 1
+TBSS=~/516/data/derivative/tbss
+DTI=MD
+TMP=~/Templates/ENIGMA
+for i in $(ln ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+tbss_skeleton \
+  -i ${TMP}/ENIGMA_DTI_FA.nii.gz \
+  -p 0.049 \
+  ${TMP}/ENIGMA_DTI_FA_skeleton_mask_dst.nii.gz \
+  ${FSLDIR}/data/standard/LowerCingulum_1mm.nii.gz \
+  ${TBSS}/FA-individ/${SBJ}/FA/${SBJ}_masked_FA.nii.gz  \
+  ${TBSS}/${DTI}-individ/${SBJ}/stats/${SBJ}_masked_${DTI}skel \
+  -a ${TBSS}/${DTI}-individ/${SBJ}/${DTI}/${SBJ}_masked_${DTI}.nii.gz \
+  -s ${TMP}/ENIGMA_DTI_FA_skeleton_mask.nii.gz
 done
 
