@@ -11,7 +11,7 @@ TBSS=~/516/data/derivative/tbss
 DTI=FA 
 APPS=~/research_bin/ENIGMA
 mkdir -p ${TBSS}/ROI/part1/${DTI}
-for SUJ in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for SUJ in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   ~/${APPS}/ROIextraction_info/singleSubjROI_exe \
   ~/${APPS}/ROIextraction_info/ENIGMA_look_up_table.txt \
   ~/${APPS}/ROIextraction_info/mean_FA_skeleton.nii.gz \
@@ -25,7 +25,7 @@ TBSS=~/516/data/derivative/tbss
 DTI=RD
 APPS=~/research_bin/ENIGMA
 mkdir -p ${TBSS}/ROI/part1/${DTI}
-for SUJ in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for SUJ in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   ~/${APPS}/ROIextraction_info/singleSubjROI_exe \
   ~/${APPS}/ROIextraction_info/ENIGMA_look_up_table.txt \
   ~/${APPS}/ROIextraction_info/mean_FA_skeleton.nii.gz \
@@ -39,7 +39,7 @@ TBSS=~/516/data/derivative/tbss
 DTI=MD
 APPS=~/research_bin/ENIGMA
 mkdir -p ${TBSS}/ROI/part1/${DTI}
-for SUJ in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for SUJ in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   ~/${APPS}/ROIextraction_info/singleSubjROI_exe \
   ~/${APPS}/ROIextraction_info/ENIGMA_look_up_table.txt \
   ~/${APPS}/ROIextraction_info/mean_FA_skeleton.nii.gz \
@@ -53,7 +53,7 @@ TBSS=~/516/data/derivative/tbss
 DTI=AD
 APPS=~/research_bin/ENIGMA
 mkdir -p ${TBSS}/ROI/part1/${DTI}
-for SUJ in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for SUJ in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   ~/${APPS}/ROIextraction_info/singleSubjROI_exe \
   ~/${APPS}/ROIextraction_info/ENIGMA_look_up_table.txt \
   ~/${APPS}/ROIextraction_info/mean_FA_skeleton.nii.gz \
@@ -66,7 +66,7 @@ done
 TBSS=~/516/data/derivative/tbss
 DTI=FA
 mkdir -p ${TBSS}/ROI/part2/${DTI}
-for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for i in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   ~/${APPS}/ROIextraction_info/averageSubjectTracts_exe \
   ${TBSS}/ROI/part1/${DTI}/${i}_ROIout.csv \
   ${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv
@@ -76,7 +76,7 @@ done
 TBSS=~/516/data/derivative/tbss
 DTI=RD
 mkdir -p ${TBSS}/ROI/part2/${DTI}
-for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for i in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   ~/${APPS}/ROIextraction_info/averageSubjectTracts_exe \
   ${TBSS}/ROI/part1/${DTI}/${i}_ROIout.csv \
   ${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv
@@ -86,7 +86,7 @@ done
 TBSS=~/516/data/derivative/tbss
 DTI=MD
 mkdir -p ${TBSS}/ROI/part2/${DTI}
-for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for i in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   ~/${APPS}/ROIextraction_info/averageSubjectTracts_exe \
   ${TBSS}/ROI/part1/${DTI}/${i}_ROIout.csv \
   ${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv
@@ -96,7 +96,7 @@ done
 TBSS=~/516/data/derivative/tbss
 DTI=AD
 mkdir -p ${TBSS}/ROI/part2/${DTI}
-for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for i in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   ~/${APPS}/ROIextraction_info/averageSubjectTracts_exe \
   ${TBSS}/ROI/part1/${DTI}/${i}_ROIout.csv \
   ${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv
@@ -106,7 +106,7 @@ done
 TBSS=~/516/data/derivative/tbss
 DTI=FA
 cd ${TBSS}
-for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for i in $(ls ${TBSS}/origdata/ | sed 's/_Fa.nii.gz//g'); do
   echo ${i},${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv >> subjectList-${DTI}.csv
 done
 
@@ -114,7 +114,7 @@ done
 TBSS=~/516/data/derivative/tbss
 DTI=RD
 cd ${TBSS}
-for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for i in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   echo ${i},${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv >> subjectList-${DTI}.csv
 done
 
@@ -122,7 +122,7 @@ done
 TBSS=~/516/data/derivative/tbss
 DTI=MD
 cd ${TBSS}
-for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for i in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   echo ${i},${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv >> subjectList-${DTI}.csv
 done
 
@@ -130,7 +130,7 @@ done
 TBSS=~/516/data/derivative/tbss
 DTI=AD
 cd ${TBSS}
-for i in $(ls ${TBSS}/origdata/ | sed 's/.nii.gz//g'); do
+for i in $(ls ${TBSS}/origdata/ | sed 's/_FA.nii.gz//g'); do
   echo ${i},${TBSS}/ROI/part2/${DTI}/${i}_ROIout_avg.csv >> subjectList-${DTI}.csv
 done
 
